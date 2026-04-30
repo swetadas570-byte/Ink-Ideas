@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ink & Ideas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1><%= title %></h1>
+    <p><%= tagline %></p>
+
+    <hr>
+
+    <a href="/create">Create a New Post</a>
+
+    <hr>
+
+    <h2>All Posts</h2>
+
+    <% if (posts.length === 0) { %>
+      <p>No stories yet... Be the first to write something !!</p>
+    <% } else { %>
+      <% posts.forEach((post, index) => { %>
+        <div class="post">
+          <h3><%= post.title %></h3>
+          <p><%= post.content %></p>
+
+          <a href="/edit/<%= index %>">Edit</a>
+
+          <form action="/delete/<%= index %>" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } %>
+
+  </div>
+
+<%- include("partials/footer.ejs") %>
+</body>
+</html>
